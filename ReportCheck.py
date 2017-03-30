@@ -70,16 +70,16 @@ try :
             exSum = l[i+1]
             count = sum(1 for _ in re.finditer(r'\b%s\b' % re.escape(appName), exSum))
             if not exSum.startswith(clientName):
-                print "\nError : Client Name mismatched in executive summary. Please correct it."
+                print "\n\033[1;91mError : Client Name mismatched in executive summary. Please correct it.\033[0;m"
                 exError += 1
             if (not appName in l[i + 1]) or (not count == 2):
-                print "\nError : Application Name mismatched in executive summary. Please correct it."
+                print "\n\033[1;91mError : Application Name mismatched in executive summary. Please correct it.\033[0;m"
                 exError += 1
             if not testType in l[i + 1]:
-                print "\nError : Offering Name mismatched in executive summary. Please correct it."
+                print "\n\033[1;91mError : Offering Name mismatched in executive summary. Please correct it.\033[0;m"
                 exError += 1
             if exError == 0:
-                print "\nExecutive Summary is correct. :)\n"
+                print "\n\033[1;92mExecutive Summary is correct. :)\033[0;m\n"
         else:
             pass
         if "findings characterized as follows:" in l[i]:
@@ -102,16 +102,16 @@ try :
             intro = l[i + 1]
             count = sum(1 for _ in re.finditer(r'\b%s\b' % re.escape(appName), intro))
             if not intro.startswith(clientName):
-                print "\nError : Client Name mismatched in "'Introduction'". Please correct it."
+                print "\n\033[1;91mError : Client Name mismatched in introduction part. Please correct it.\033[0;m"
                 intError += 1
             if (not appName in l[i + 1]) or (not count == 2):
-                print "\nError : Application Name mismatched in "'Introduction'". Please correct it."
+                print "\n\033[1;91mError : Application Name mismatched in introduction part. Please correct it.\033[0;m"
                 intError += 1
             if not testType in l[i + 1]:
                 intError += 1
-                print "\nError : Offering Name mismatched in "'Introduction'". Please correct it."
+                print "\n\033[1;91mError : Offering Name mismatched in introduction part. Please correct it.\033[0;m"
             if intError == 0:
-                print "\nIntroduction is correct. :)\n"
+                print "\n\033[1;92mIntroduction is correct. :)\033[0;m\n"
         else:
             pass
     print "************************************************************************************************************"
@@ -131,10 +131,10 @@ try :
         print "\nTotal findings written in finding categories : "+ sumFindings
         print "************************************************************************************************************"
         if Sum == int(sumFindings):
-            print "\nNumber of findings are matched with the Total of findings.\n"
+            print "\n\033[1;92mNumber of findings are matched with the Total of findings.\033[0;m\n"
             print "************************************************************************************************************"
         else:
-            print "\nThere is a mismatch between your Total Findings and Finding Categories.\nPlease correct it."
+            print "\n\033[1;91mThere is a mismatch between your Total Findings and Finding Categories.\nPlease correct it.\033[0;m"
     else :
         print "No finding categories are found or may be you've wrong written your Executive Summary. Please Check."
     print "************************************************************************************************************"
@@ -163,13 +163,12 @@ try :
                 splError.append(err.Text)
 
         if not grmError is None:
-            choice = raw_input(
-                "\nYou have %d grammar errors in the report, do you want to see it ?\nPress Y for yes or Enter for skip.\n" % (
+            choice = raw_input('\033[1;41mYou have %d grammatical errors in the report, do you want to see it ?\033[0;m\nPress Y for yes or Enter for skip.\n'% (
                 doc.GrammaticalErrors.Count))
             choice = choice.upper()
             if choice == "Y":
                 print "************************************************************************************************************"
-                print "Printing Grammar Errors........\n"
+                print "Printing Grammatical Errors........\n"
                 for i in range(0, len(grmError)):
                     print "Grammatical Error in : " + grmError[i].encode('utf-8')
             else:
@@ -179,7 +178,7 @@ try :
         if not splError is None:
             print "************************************************************************************************************"
             choice = raw_input(
-                "\nYou have %d spelling mistakes in the report, do you want to see it ?\nPress Y for yes or Enter for skip.\n" % (
+                "\033[1;41mYou have %d spelling errors in the report, do you want to see it ?\033[0;m\nPress Y for yes or Enter for skip.\n" % (
                 doc.SpellingErrors.Count))
             choice = choice.upper()
             if choice == "Y":
